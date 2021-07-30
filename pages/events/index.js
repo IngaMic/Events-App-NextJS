@@ -1,4 +1,5 @@
 import { Fragment } from "react";
+import Head from "next/head";
 import { useRouter } from "next/router";
 import { getAllEvents } from "../../helpers/api-util";
 
@@ -12,12 +13,15 @@ const AllEventsPage = (props) => {
     const findEventsHandler = (year, month) => {
         //constructing desired path
         const fullPath = `/events/${year}/${month}`;
-        //programmatically navigate to given slug
         router.push(fullPath);
     };
 
     return (
         <Fragment>
+            <Head>
+                <title>All Events</title>
+                <meta name="description" content="events for developers" />
+            </Head>
             <EventsSearch onSearch={findEventsHandler} />
             <EventList items={events} />
         </Fragment>
